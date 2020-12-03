@@ -1,0 +1,42 @@
+#Day Three 
+#Read Data In 
+#Open File, write to list
+with open("/home/sam.gray/AdventofCode20/day3.txt") as f:
+    data = f.read().splitlines() 
+
+#PART 1 
+
+treeCount = 0
+position = [0,0]
+
+while position[0] < len(data):
+    if (position[1] > len(data[0])-1):
+        position[1] = position[1] - len(data[0])
+    if data[position[0]][position[1]] == "#":
+        treeCount += 1
+    position[0] +=1
+    position[1] += 3
+print(treeCount)
+
+#Part Two 
+import numpy
+counts = []
+i =0
+positions1 = [1, 3, 5, 7, 1]
+positions2 = [1, 1, 1, 1, 2]
+
+while i < (len(positions1)):
+    treeCount = 0
+    position = [0,0]
+    while position[0] < len(data):
+        if (position[1] > len(data[0])-1):
+            position[1] = position[1] - len(data[0])
+        if data[position[0]][position[1]] == "#":
+            treeCount += 1
+        position[0] += positions2[i]
+        position[1] += positions1[i]
+    counts.append(treeCount)
+    i+=1
+
+    
+print(numpy.prod(counts))
