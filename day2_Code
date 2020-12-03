@@ -45,9 +45,10 @@ for item in data:
     pos2 = tempupper - 1
     tempkey = temp[2]
     temppass = temp[3]
-    if temppass[pos1] == tempkey and temppass[pos2]== tempkey:
+    if temppass[pos1] == tempkey and temppass[pos2] != tempkey:
+        count2 +=1
+    elif temppass[pos1] != tempkey and temppass[pos2] == tempkey:
         count2 +=1
     else: next
 
 print(count2)
-
