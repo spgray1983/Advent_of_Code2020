@@ -1,0 +1,57 @@
+#Day 1 Advent of Code
+#Part1
+
+#Create list from text file 
+
+textfile = open("/home/sam.gray/AdventofCode20/day1.txt","r")
+templist = textfile.readlines()
+newlist = []
+for item in templist:
+    value = item
+    value = value.replace("/n","")
+    value = value.replace(" ","")
+    value = int(value)
+    newlist.append(value)
+    
+
+newlist[0]
+    
+
+i=0
+j = 1
+outputa = 0
+outputb = 0
+for i in range(len(newlist)):
+    for j in (range(len(newlist))):
+        if newlist[i] + newlist[j] == 2020:
+            outputa = newlist[i]
+            outputb = newlist[j]
+        elif j != len(newlist):
+            j += 1
+        else:
+            i +=1
+               
+print(outputb*outputa)  
+
+#PART2 Work
+i2=0
+j2 = 1
+k2 = 2
+output1 = 0
+output2 = 0
+output3 = 0
+for i2 in range(len(newlist)):
+    for j2 in (range(len(newlist))):
+        for k2 in (range(len(newlist))):
+            if newlist[i2] + newlist[j2] +newlist[k2] == 2020:
+                output1 = newlist[i2]
+                output2 = newlist[j2]
+                output3 = newlist[k2]
+            elif k2 != len(newlist):
+                k2 += 1
+            elif j2 != len(newlist):
+                j2 += 1
+            else:
+                i2 +=1
+               
+print(output1*output2*output3)
