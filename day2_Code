@@ -1,0 +1,22 @@
+#DAY TWO AOC 
+#String Splitter 
+def stringSplitter(string):
+    temp=string
+    temp2 = temp.partition("-")
+    lower=int(temp2[0])
+    temp3 = temp2[2]
+    temp3 = temp3.partition(": ")
+    password = temp3[2]
+    temp4 = temp3[0]
+    temp4 = temp4.partition(" ")
+    upper = int(temp4[0])
+    key = temp4[2]
+    return(lower, upper, key, password)
+
+#Open File, write to list
+with open("/home/sam.gray/AdventofCode20/day2.txt") as f:
+    data = f.read().splitlines() 
+
+data[0]
+stringSplitter(data[0])
+
