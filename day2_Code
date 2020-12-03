@@ -17,6 +17,37 @@ def stringSplitter(string):
 with open("/home/sam.gray/AdventofCode20/day2.txt") as f:
     data = f.read().splitlines() 
 
-data[0]
-stringSplitter(data[0])
+hold = stringSplitter(data[0])
+hold[0]
+#Part 1 
+count = 0
+for item in data:
+    temp = stringSplitter(item)
+    templower = temp[0]
+    tempupper = temp[1]
+    tempkey = temp[2]
+    temppass = temp[3]
+    tempcount = 0
+    for i in temp[3]:
+        if i == tempkey:
+            tempcount +=1
+    if templower<= tempcount <= tempupper:
+        count +=1
+print(count)
+
+#Part Two Day Two 
+count2 = 0
+for item in data:
+    temp = stringSplitter(item)
+    templower = temp[0]
+    pos1 = templower-1
+    tempupper = temp[1]
+    pos2 = tempupper - 1
+    tempkey = temp[2]
+    temppass = temp[3]
+    if temppass[pos1] == tempkey and temppass[pos2]== tempkey:
+        count2 +=1
+    else: next
+
+print(count2)
 
