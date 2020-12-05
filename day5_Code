@@ -1,0 +1,88 @@
+#Day Five Code 
+import numpy as np
+
+#Read Data 
+with open("/home/sam.gray/AdventofCode20/day5.txt") as f:
+    data = f.read().splitlines() 
+
+#Create Test Data 
+#data =['FFFBBBFRRR']
+#Seat Row Array 
+seatRow = np.arange(128)
+test = np.split(seatRow,2)
+
+#Seat Column Array 
+seatCol = np.arange(8)
+
+#Part1
+allSeats = []
+#item = data[0]
+for item in data:
+    i = 0
+    tempArray1 = seatRow
+    tempArray2 = seatCol
+    row = 0
+    col = 0
+    while i < len(item):
+        if i == 6:
+            if item[i] == 'F':
+                row = tempArray1[0]
+                #tempArray = np.split(tempArray1,2)
+                #print("last check one", tempArray1)
+                #print(tempArray1[0])
+                i+=1
+            else: 
+                row = tempArray1[1]
+                #print("last check two", tempArray1)
+                i+=1
+        elif i == 9:
+            if item[i] == 'L':
+                #tempArray = np.split(tempArray2,2)
+                col = tempArray2[0]
+                #print(tempArray2)
+                i+=1
+            else: 
+                col = tempArray2[1]
+                #print(tempArray2)
+                i+=1
+        elif item[i] == 'F':
+            tempArray = np.split(tempArray1,2)
+            tempArray1 = tempArray[0]
+            #print(tempArray1)
+            i+=1
+        elif item[i] == 'B':
+            tempArray = np.split(tempArray1,2)
+            tempArray1 = tempArray[1]
+            #print(tempArray1)
+            i+=1
+        elif item[i] == 'L':
+            tempArray = np.split(tempArray2,2)
+            tempArray2 = tempArray[0]
+            #print(tempArray2)
+            i+=1
+        elif item[i] =='R':
+            tempArray = np.split(tempArray2,2)
+            tempArray2 = tempArray[1]
+            #print(tempArray2)
+            i+=1
+    seatID = (row * 8) + col
+    allSeats.append(seatID)
+    #print(row,col,seatID)
+
+print("Max Seat ID is ",max(allSeats)) 
+
+##Part Two 
+test = allSeats
+
+def find_missing(lst): 
+    return [x for x in range(lst[0], lst[-1]+1)  
+                               if x not in lst] 
+  
+# Find my Seat code 
+lst = test 
+print(find_missing(lst)) 
+
+ 
+ 
+tempArray = test[0]
+tempArray
