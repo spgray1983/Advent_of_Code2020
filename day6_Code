@@ -1,0 +1,110 @@
+#Day Six Code 
+
+from collections import Counter
+
+#Read in Data File
+with open("/home/sam.gray/AdventofCode20/day6.txt") as f:
+    data = f.read().splitlines() 
+
+#Test Data 
+testdata = ['abc',
+'',
+'a',
+'b',
+'c',
+'',
+'ab',
+'ac',
+'',
+'a',
+'a',
+'a',
+'a',
+'',
+'b']
+
+#Create Dictionary of groups 
+
+#Split data into passenger strings 
+def listSplitter(lst):
+    passengers = []
+    temp = ""
+    i = 0
+    while i < len(lst):
+        if lst[i] != "":
+            temp = temp + " " + lst[i]
+            i+=1
+            if i == (len(lst)):
+                passengers.append(temp)
+        elif lst[i] == "":
+            passengers.append(temp)
+            temp = ""
+            i+=1
+        else: 
+            passengers.append(temp) 
+            i+=1
+    i = 0
+    while i < len(passengers):
+        passengers[i] = passengers[i][1:]
+        i+=1
+    return passengers
+
+#Dictionary of groups 
+groups = listSplitter(data)
+passGroups = {}
+i = 0
+while i < len(groups):
+    j = 0
+    passGroups[i] = {}
+    templist = []
+    while j < len(groups[i]):
+        if groups[i][j] == ' ':
+            j+=1 
+        elif groups[i][j] not in templist: 
+            templist.append(groups[i][j])
+            j += 1
+        else:
+            j +=1
+    passGroups[i]=templist
+    i+=1
+        
+#Count total number of Yes 
+count = 0
+i = 0
+while i < len(passGroups):
+    count = count + len(passGroups[i])
+    i+=1
+    
+print(count)    
+
+##Part Two - Everyone in Group answers Yes
+
+grouptwo = listSplitter(data)
+  
+
+groupTwoPass = {}
+i = 0
+newCount=0
+while i < len(grouptwo):
+    j = 0
+    groupTwoPass[i]={}
+    people = 1
+    templist = []
+    while j < len(grouptwo[i]):
+        if grouptwo[i][j] != ' ':
+            templist.append(grouptwo[i][j])
+            j+=1
+        elif grouptwo[i][j] == ' ':
+            people +=1
+            j+=1
+    holder = dict(Counter(templist))
+    for item in holder:
+        score = holder.get(item)
+        if int(score) == people:
+            newCount +=1
+    #groupTwoPass[i]=templist
+    i+=1 
+    
+print(newCount)    
+    
+    
